@@ -77,6 +77,15 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       TextFormField(
+                        validator: (value){
+                          if (value ==""){
+                            return "Please Fill Password";
+                          }
+                          else if (value!.length <8){
+                            return "Min length is 8 character";
+                          }
+                          return "";
+                        },
                         decoration: InputDecoration(
                           hintText: "Password",
                           suffixIcon: GestureDetector(
