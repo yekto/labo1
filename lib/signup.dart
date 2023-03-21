@@ -102,6 +102,15 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       TextFormField(
+                        validator: (value){
+                          if (value!.length < 11){
+                            return"Make Sure Your Phone number";
+                          }
+                          else if (value == "") {
+                            return "Please fill phone number";
+                          }
+                          return "";
+                        },
                         decoration: InputDecoration(
                           // icon: Icon(Icons.phone),
                           hintText: "Phone Number",
