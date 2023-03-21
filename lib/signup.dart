@@ -4,6 +4,7 @@ class SignUp extends StatefulWidget {
   @override
   State<SignUp> createState() => _SignUpState();
 }
+
 final _formKey = GlobalKey<FormState>();
 
 class _SignUpState extends State<SignUp> {
@@ -42,7 +43,15 @@ class _SignUpState extends State<SignUp> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      TextFormField(
+                      TextFormField(validator:(value){
+                        if (value!.length < 6){
+                          return "Username is too Short";
+                        }
+                        else if (value==""){
+                          return "Please fill this form";
+                        }
+                        return"";
+                      },
                         decoration: InputDecoration(
                           hintText: "UserName",
                           hintStyle: TextStyle(color: Colors.black),
