@@ -11,16 +11,28 @@ String p =
 RegExp regExp = new RegExp(p);
 
 class _SignUpState extends State<SignUp> {
+  void vaildation(){
+    final FormState? _form = _formKey.currentState;
+    if (_form!.validate()){
+      print("yes");
+    }
+    else{
+      print ("NO");
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Form(
           key: _formKey,
           child: Container(
+            color: Colors.orangeAccent,
             child: Column(
               children: <Widget>[
                 Container(
+
                   height: 220,
                   width: double.infinity,
                   child: Column(
@@ -40,6 +52,7 @@ class _SignUpState extends State<SignUp> {
                   height: 20,
                 ),
                 Container(
+                  color: Colors.indigoAccent,
                   height: 400,
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   width: double.infinity,
@@ -122,7 +135,9 @@ class _SignUpState extends State<SignUp> {
                         height: 45,
                         width: double.infinity,
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              vaildation();
+                            },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.grey,
                                 foregroundColor: Colors.white),
