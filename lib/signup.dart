@@ -102,14 +102,17 @@ class _SignUpState extends State<SignUp> {
                           hintText: "Password",
                           suffixIcon: GestureDetector(
                             onTap: () {
-                              setState(() {
-                                obserText = !obserText;
-                              });
+                              setState(
+                                () {
+                                  obserText = !obserText;
+                                },
+                              );
                               FocusScope.of(context).unfocus();
                             },
                             child: Icon(
-                              obserText==true?
-                              Icons.visibility:Icons.visibility_off,
+                              obserText == true
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
                               color: Colors.black,
                             ),
                           ),
