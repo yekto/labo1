@@ -10,16 +10,18 @@ String p =
     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 RegExp regExp = new RegExp(p);
 
+bool obserText=true;
+
 class _SignUpState extends State<SignUp> {
-  void vaildation(){
+  void vaildation() {
     final FormState? _form = _formKey.currentState;
-    if (_form!.validate()){
+    if (_form!.validate()) {
       print("yes");
-    }
-    else{
-      print ("NO");
+    } else {
+      print("NO");
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,11 +30,9 @@ class _SignUpState extends State<SignUp> {
         child: Form(
           key: _formKey,
           child: Container(
-            color: Colors.orangeAccent,
             child: Column(
               children: <Widget>[
                 Container(
-
                   height: 220,
                   width: double.infinity,
                   child: Column(
@@ -52,7 +52,6 @@ class _SignUpState extends State<SignUp> {
                   height: 20,
                 ),
                 Container(
-                  color: Colors.indigoAccent,
                   height: 400,
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   width: double.infinity,
@@ -61,10 +60,10 @@ class _SignUpState extends State<SignUp> {
                     children: <Widget>[
                       TextFormField(
                         validator: (value) {
-                          if (value!.length < 6) {
-                            return "Username is too Short";
-                          } else if (value == "") {
+                          if (value == "") {
                             return "Please fill this form";
+                          } else if (value!.length < 6) {
+                            return "Username is too Short";
                           }
                           return "";
                         },
@@ -90,11 +89,11 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       TextFormField(
-                        validator: (value){
-                          if (value ==""){
+                        obscureText: obserText,
+                        validator: (value) {
+                          if (value == "") {
                             return "Please Fill Password";
-                          }
-                          else if (value!.length <8){
+                          } else if (value!.length < 8) {
                             return "Min length is 8 character";
                           }
                           return "";
@@ -103,6 +102,9 @@ class _SignUpState extends State<SignUp> {
                           hintText: "Password",
                           suffixIcon: GestureDetector(
                             onTap: () {
+                              setState(() {
+                                obserText = !obserText;
+                              });
                               FocusScope.of(context).unfocus();
                             },
                             child: Icon(
@@ -115,12 +117,12 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       TextFormField(
-                        validator: (value){
-                          if (value!.length < 11){
-                            return"Make Sure Your Phone number";
-                          }
-                          else if (value == "") {
+                        keyboardType: TextInputType.number,
+                        validator: (value) {
+                          if (value == "") {
                             return "Please fill phone number";
+                          } else if (value!.length < 11) {
+                            return "Make Sure Your Phone number";
                           }
                           return "";
                         },
