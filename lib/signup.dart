@@ -108,7 +108,8 @@ class _SignUpState extends State<SignUp> {
                               FocusScope.of(context).unfocus();
                             },
                             child: Icon(
-                              Icons.visibility,
+                              obserText==true?
+                              Icons.visibility:Icons.visibility_off,
                               color: Colors.black,
                             ),
                           ),
