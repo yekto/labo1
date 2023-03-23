@@ -18,22 +18,27 @@ class _SignUpState extends State<SignUp> {
     if (_form!.validate()) {
       print("yes");
     } else {
-      print("NO");
+      print("no");
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
+
       body: SafeArea(
         child: Form(
           key: _formKey,
           child: Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(
+                        'assets/gian-cescon-N0g-deioHO4-unsplash.jpg'))),
             child: Column(
               children: <Widget>[
                 Container(
-                  height: 220,
+                  height: 200,
                   width: double.infinity,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -41,9 +46,9 @@ class _SignUpState extends State<SignUp> {
                       Text(
                         "Register",
                         style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
                     ],
                   ),
@@ -68,8 +73,10 @@ class _SignUpState extends State<SignUp> {
                           return "";
                         },
                         decoration: InputDecoration(
+                          fillColor: Colors.white.withOpacity(0.4),
+                          filled: true,
                           hintText: "UserName",
-                          hintStyle: TextStyle(color: Colors.black),
+                          hintStyle: TextStyle(color: Colors.white),
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -83,8 +90,10 @@ class _SignUpState extends State<SignUp> {
                           return "";
                         },
                         decoration: InputDecoration(
+                          fillColor: Colors.white.withOpacity(0.4),
+                          filled: true,
                           hintText: "Email",
-                          hintStyle: TextStyle(color: Colors.black),
+                          hintStyle: TextStyle(color: Colors.white),
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -99,6 +108,8 @@ class _SignUpState extends State<SignUp> {
                           return "";
                         },
                         decoration: InputDecoration(
+                          fillColor: Colors.white.withOpacity(0.4),
+                          filled: true,
                           hintText: "Password",
                           suffixIcon: GestureDetector(
                             onTap: () {
@@ -116,7 +127,7 @@ class _SignUpState extends State<SignUp> {
                               color: Colors.black,
                             ),
                           ),
-                          hintStyle: TextStyle(color: Colors.black),
+                          hintStyle: TextStyle(color: Colors.white),
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -132,13 +143,15 @@ class _SignUpState extends State<SignUp> {
                         },
                         decoration: InputDecoration(
                           // icon: Icon(Icons.phone),
+                          fillColor: Colors.white.withOpacity(0.4),
+                          filled: true,
                           hintText: "Phone Number",
-                          hintStyle: TextStyle(color: Colors.black),
+                          hintStyle: TextStyle(color: Colors.white),
                           border: OutlineInputBorder(),
                         ),
                       ),
                       Container(
-                        height: 45,
+                        height: 40,
                         width: double.infinity,
                         child: ElevatedButton(
                             onPressed: () {
@@ -151,14 +164,20 @@ class _SignUpState extends State<SignUp> {
                       ),
                       Row(
                         children: <Widget>[
-                          Text("I have already an Account Dude"),
+                          Text(
+                            "I have already an Account Dude",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold),
+                          ),
                           SizedBox(width: 5),
                           GestureDetector(
                             child: Text(
                               "Login",
                               style: TextStyle(
                                   color: Colors.blue,
-                                  fontSize: 20,
+                                  fontSize: 15,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -172,6 +191,7 @@ class _SignUpState extends State<SignUp> {
           ),
         ),
       ),
+      //asd
     );
   }
 }
