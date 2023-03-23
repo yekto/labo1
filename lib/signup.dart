@@ -25,173 +25,180 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(10),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/2.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: SafeArea(
+          child: Form(
+            key: _formKey,
+            child: Container(
 
-      body: SafeArea(
-        child: Form(
-          key: _formKey,
-          child: Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(
-                        'assets/gian-cescon-N0g-deioHO4-unsplash.jpg'))),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  height: 200,
-                  width: double.infinity,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      Text(
-                        "Register",
-                        style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    ],
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    height: 200,
+                    width: double.infinity,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        Text(
+                          "Register",
+                          style: TextStyle(
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  height: 400,
-                  margin: EdgeInsets.symmetric(horizontal: 10),
-                  width: double.infinity,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      TextFormField(
-                        validator: (value) {
-                          if (value == "") {
-                            return "Please fill this form";
-                          } else if (value!.length < 6) {
-                            return "Username is too Short";
-                          }
-                          return "";
-                        },
-                        decoration: InputDecoration(
-                          fillColor: Colors.white.withOpacity(0.4),
-                          filled: true,
-                          hintText: "UserName",
-                          hintStyle: TextStyle(color: Colors.white),
-                          border: OutlineInputBorder(),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    height: 400,
+                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    width: double.infinity,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        TextFormField(
+                          validator: (value) {
+                            if (value == "") {
+                              return "Please fill this form";
+                            } else if (value!.length < 6) {
+                              return "Username is too Short";
+                            }
+                            return "";
+                          },
+                          decoration: InputDecoration(
+                            fillColor: Colors.white.withOpacity(0.4),
+                            filled: true,
+                            hintText: "UserName",
+                            hintStyle: TextStyle(color: Colors.white),
+                            border: OutlineInputBorder(),
+                          ),
                         ),
-                      ),
-                      TextFormField(
-                        validator: (value) {
-                          if (value == "") {
-                            return "Please fill this form Dude";
-                          } else if (!regExp.hasMatch(value!)) {
-                            return "Email invalid Dude";
-                          }
-                          return "";
-                        },
-                        decoration: InputDecoration(
-                          fillColor: Colors.white.withOpacity(0.4),
-                          filled: true,
-                          hintText: "Email",
-                          hintStyle: TextStyle(color: Colors.white),
-                          border: OutlineInputBorder(),
+                        TextFormField(
+                          validator: (value) {
+                            if (value == "") {
+                              return "Please fill this form Dude";
+                            } else if (!regExp.hasMatch(value!)) {
+                              return "Email invalid Dude";
+                            }
+                            return "";
+                          },
+                          decoration: InputDecoration(
+                            fillColor: Colors.white.withOpacity(0.4),
+                            filled: true,
+                            hintText: "Email",
+                            hintStyle: TextStyle(color: Colors.white),
+                            border: OutlineInputBorder(),
+                          ),
                         ),
-                      ),
-                      TextFormField(
-                        obscureText: obserText,
-                        validator: (value) {
-                          if (value == "") {
-                            return "Please Fill Password";
-                          } else if (value!.length < 8) {
-                            return "Min length is 8 character";
-                          }
-                          return "";
-                        },
-                        decoration: InputDecoration(
-                          fillColor: Colors.white.withOpacity(0.4),
-                          filled: true,
-                          hintText: "Password",
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              setState(
-                                () {
-                                  obserText = !obserText;
-                                },
-                              );
-                              FocusScope.of(context).unfocus();
-                            },
-                            child: Icon(
-                              obserText == true
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              color: Colors.black,
+                        TextFormField(
+                          obscureText: obserText,
+                          validator: (value) {
+                            if (value == "") {
+                              return "Please Fill Password";
+                            } else if (value!.length < 8) {
+                              return "Min length is 8 character";
+                            }
+                            return "";
+                          },
+                          decoration: InputDecoration(
+                            fillColor: Colors.white.withOpacity(0.4),
+                            filled: true,
+                            hintText: "Password",
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(
+                                  () {
+                                    obserText = !obserText;
+                                  },
+                                );
+                                FocusScope.of(context).unfocus();
+                              },
+                              child: Icon(
+                                obserText == true
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Colors.black,
+                              ),
                             ),
+                            hintStyle: TextStyle(color: Colors.white),
+                            border: OutlineInputBorder(),
                           ),
-                          hintStyle: TextStyle(color: Colors.white),
-                          border: OutlineInputBorder(),
                         ),
-                      ),
-                      TextFormField(
-                        keyboardType: TextInputType.number,
-                        validator: (value) {
-                          if (value == "") {
-                            return "Please fill phone number";
-                          } else if (value!.length < 11) {
-                            return "Make Sure Your Phone number";
-                          }
-                          return "";
-                        },
-                        decoration: InputDecoration(
-                          // icon: Icon(Icons.phone),
-                          fillColor: Colors.white.withOpacity(0.4),
-                          filled: true,
-                          hintText: "Phone Number",
-                          hintStyle: TextStyle(color: Colors.white),
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                      Container(
-                        height: 40,
-                        width: double.infinity,
-                        child: ElevatedButton(
-                            onPressed: () {
-                              vaildation();
-                            },
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.grey,
-                                foregroundColor: Colors.white),
-                            child: Text("Register")),
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Text(
-                            "I have already an Account Dude",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold),
+                        TextFormField(
+                          keyboardType: TextInputType.number,
+                          validator: (value) {
+                            if (value == "") {
+                              return "Please fill phone number";
+                            } else if (value!.length < 11) {
+                              return "Make Sure Your Phone number";
+                            }
+                            return "";
+                          },
+                          decoration: InputDecoration(
+                            // icon: Icon(Icons.phone),
+                            fillColor: Colors.white.withOpacity(0.4),
+                            filled: true,
+                            hintText: "Phone Number",
+                            hintStyle: TextStyle(color: Colors.white),
+                            border: OutlineInputBorder(),
                           ),
-                          SizedBox(width: 5),
-                          GestureDetector(
-                            child: Text(
-                              "Login",
+                        ),
+                        Container(
+                          height: 40,
+                          width: double.infinity,
+                          child: ElevatedButton(
+                              onPressed: () {
+                                vaildation();
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.grey,
+                                  foregroundColor: Colors.white),
+                              child: Text("Register")),
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              "I have already an Account Dude",
                               style: TextStyle(
-                                  color: Colors.blue,
-                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontSize: 12,
                                   fontWeight: FontWeight.bold),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                            SizedBox(width: 5),
+                            GestureDetector(
+                              child: Text(
+                                "Login",
+                                style: TextStyle(
+                                    color: Colors.blue,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
       ),
-      //asd
+
+
     );
   }
 }
