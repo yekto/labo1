@@ -91,6 +91,7 @@ class _LoginState extends State<Login> {
                           hintText: "Password",
                           suffixIcon: GestureDetector(
                             onTap: () {
+                              FocusScope.of(context).unfocus();
                               setState(() {
                                 obserText = !obserText;
                               });
