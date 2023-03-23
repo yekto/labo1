@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:labo1/login.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -158,13 +159,17 @@ class _SignUpState extends State<SignUp> {
                           height: 40,
                           width: double.infinity,
                           child: ElevatedButton(
-                              onPressed: () {
-                                vaildation();
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.grey,
-                                  foregroundColor: Colors.white),
-                              child: Text("Register")),
+                            onPressed: () {
+                              vaildation();
+                            },
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.grey,
+                                foregroundColor: Colors.white),
+                            child: Text(
+                              "Register",
+                              style: TextStyle(fontSize: 17.3),
+                            ),
+                          ),
                         ),
                         Row(
                           children: <Widget>[
@@ -177,6 +182,13 @@ class _SignUpState extends State<SignUp> {
                             ),
                             SizedBox(width: 5),
                             GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (ctx) => Login(),
+                                  ),
+                                );
+                              },
                               child: Text(
                                 "Login",
                                 style: TextStyle(

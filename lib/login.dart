@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:labo1/signup.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -133,12 +134,18 @@ class _LoginState extends State<Login> {
                             width: 10,
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (ctx) => SignUp(),
+                                ),
+                              );
+                            },
                             child: Text(
                               "SignUp",
                               style: TextStyle(
                                   color: Colors.blue,
-                                  fontSize: 17,
+                                  fontSize: 15,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
