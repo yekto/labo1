@@ -6,10 +6,10 @@ class SignUp extends StatefulWidget {
 }
 
 final _formKey = GlobalKey<FormState>();
+
 String p =
     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 RegExp regExp = new RegExp(p);
-
 bool obserText = true;
 
 class _SignUpState extends State<SignUp> {
@@ -39,7 +39,6 @@ class _SignUpState extends State<SignUp> {
           child: Form(
             key: _formKey,
             child: Container(
-
               child: Column(
                 children: <Widget>[
                   Container(
@@ -78,7 +77,7 @@ class _SignUpState extends State<SignUp> {
                             return "";
                           },
                           decoration: InputDecoration(
-                            fillColor: Colors.white.withOpacity(0.4),
+                            fillColor: Colors.white.withOpacity(0.8),
                             filled: true,
                             hintText: "UserName",
                             hintStyle: TextStyle(color: Colors.white),
@@ -95,7 +94,7 @@ class _SignUpState extends State<SignUp> {
                             return "";
                           },
                           decoration: InputDecoration(
-                            fillColor: Colors.white.withOpacity(0.4),
+                            fillColor: Colors.white.withOpacity(0.8),
                             filled: true,
                             hintText: "Email",
                             hintStyle: TextStyle(color: Colors.white),
@@ -113,7 +112,7 @@ class _SignUpState extends State<SignUp> {
                             return "";
                           },
                           decoration: InputDecoration(
-                            fillColor: Colors.white.withOpacity(0.4),
+                            fillColor: Colors.white.withOpacity(0.8),
                             filled: true,
                             hintText: "Password",
                             suffixIcon: GestureDetector(
@@ -148,7 +147,7 @@ class _SignUpState extends State<SignUp> {
                           },
                           decoration: InputDecoration(
                             // icon: Icon(Icons.phone),
-                            fillColor: Colors.white.withOpacity(0.4),
+                            fillColor: Colors.white.withOpacity(0.8),
                             filled: true,
                             hintText: "Phone Number",
                             hintStyle: TextStyle(color: Colors.white),
@@ -197,8 +196,6 @@ class _SignUpState extends State<SignUp> {
           ),
         ),
       ),
-
-
     );
   }
 }
