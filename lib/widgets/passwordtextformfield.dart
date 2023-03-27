@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class PasswordTextFormField extends StatelessWidget {
   final bool obserText;
-  final Function validator;
+  final String? Function(String?)? validator;
   final String name;
-  final Function onTap;
+  final void Function()? onTap;
 
   const PasswordTextFormField(
       {Key? key,
@@ -17,16 +17,14 @@ class PasswordTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: obserText,
-      validator: validator(),
+      validator: validator,
       decoration: InputDecoration(
         fillColor: Colors.white.withOpacity(0.8),
         filled: true,
         border: OutlineInputBorder(),
         hintText: name,
         suffixIcon: GestureDetector(
-          onTap: () {
-            onTap();
-          },
+          onTap: onTap,
           child: Icon(
             obserText == true
                 ? Icons.visibility

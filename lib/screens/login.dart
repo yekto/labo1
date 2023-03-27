@@ -26,7 +26,6 @@ void vaildation() {
     print("no");
   }
 }
-
 bool obserText = true;
 
 class _LoginState extends State<Login> {
@@ -36,7 +35,7 @@ class _LoginState extends State<Login> {
       body: Container(
         alignment: Alignment.center,
         // padding: const EdgeInsets.all(10),
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/2.jpg"),
             fit: BoxFit.cover,
@@ -62,25 +61,17 @@ class _LoginState extends State<Login> {
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
-                      TextFormField(
-                        validator: (value) {
-                          if (value == "") {
-                            return "Please fill email";
-                          } else if (!regExp.hasMatch(value!)) {
-                            return "Email invalid Dude";
-                          }
-                          return "";
-                        },
-                        decoration: InputDecoration(
-                            fillColor: Colors.white.withOpacity(0.8),
-                            filled: true,
-                            border: OutlineInputBorder(),
-                            hintText: "Email address",
-                            hintStyle: TextStyle(color: Colors.white)),
-                      ),
 
-
-
+                      MyTextFormField(
+                          name: "Email address",
+                          validator: (value) {
+                            if (value == "") {
+                              return "Please fill email";
+                            } else if (!regExp.hasMatch(value!)) {
+                              return "Email invalid Dude";
+                            }
+                            return "";
+                          }),
                       TextFormField(
                         obscureText: obserText,
                         validator: (value) {
@@ -113,7 +104,6 @@ class _LoginState extends State<Login> {
                           hintStyle: TextStyle(color: Colors.white),
                         ),
                       ),
-
                       MyButton(
                           name: "Login",
                           onPressed: () {

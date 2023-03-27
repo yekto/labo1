@@ -4,27 +4,20 @@ String p =
 RegExp regExp = new RegExp(p);
 
 class MyTextFormField extends StatelessWidget {
-  // final Function validator;
+  final String? Function(String?)? validator;
   final String name;
 
   const MyTextFormField(
       {Key? key,
       required this.name,
-      // required this.validator
+      required this.validator
       })
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: (value){
-        if (value == "") {
-          return "Please fill email";
-        } else if (!regExp.hasMatch(value!)) {
-          return "Email invalid Dude";
-        }
-        return "";
-      },
+      validator: validator,
       decoration: InputDecoration(
         fillColor: Colors.white.withOpacity(0.8),
         filled: true,
