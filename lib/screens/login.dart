@@ -50,7 +50,7 @@ class _LoginState extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  height: 375,
+                  height: 330,
                   width: double.infinity,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -79,7 +79,7 @@ class _LoginState extends State<Login> {
                             hintStyle: TextStyle(color: Colors.white)),
                       ),
 
-                      MyTextFormField(name: "Email address"),
+
 
                       TextFormField(
                         obscureText: obserText,

@@ -3,14 +3,14 @@ String p =
     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 RegExp regExp = new RegExp(p);
 
-class MyTextFormField extends StatelessWidget {
+class MyTextFormFieldEmail extends StatelessWidget {
   // final Function validator;
   final String name;
 
-  const MyTextFormField(
+  const MyTextFormFieldEmail(
       {Key? key,
-      required this.name,
-      // required this.validator
+        required this.name,
+        // required this.validator
       })
       : super(key: key);
 
