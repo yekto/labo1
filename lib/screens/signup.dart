@@ -182,7 +182,12 @@ class _SignUpState extends State<SignUp> {
           ),
         ),
       ),
-
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.pinkAccent,
+        onPressed: () {},
+        tooltip: 'Increment',
+        child: const Icon(Icons.image),
+      ),
     );
   }
 }

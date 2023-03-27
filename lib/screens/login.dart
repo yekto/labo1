@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:labo1/screens/signup.dart';
 import 'package:labo1/widgets/changescreen.dart';
 import '../widgets/mybutton.dart';
+import '../widgets/mytextformField.dart';
+import '../widgets/passwordtextformfield.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -76,6 +78,9 @@ class _LoginState extends State<Login> {
                             hintText: "Email address",
                             hintStyle: TextStyle(color: Colors.white)),
                       ),
+
+                      MyTextFormField(name: "Email address"),
+
                       TextFormField(
                         obscureText: obserText,
                         validator: (value) {
@@ -108,6 +113,7 @@ class _LoginState extends State<Login> {
                           hintStyle: TextStyle(color: Colors.white),
                         ),
                       ),
+
                       MyButton(
                           name: "Login",
                           onPressed: () {
