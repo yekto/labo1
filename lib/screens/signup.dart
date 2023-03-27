@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:labo1/login.dart';
+import 'package:labo1/screens/login.dart';
+import 'package:labo1/widgets/changescreen.dart';
+import '../widgets/mybutton.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -155,49 +157,21 @@ class _SignUpState extends State<SignUp> {
                             border: OutlineInputBorder(),
                           ),
                         ),
-                        Container(
-                          height: 40,
-                          width: double.infinity,
-                          child: ElevatedButton(
+                        MyButton(
+                            name: "SignUp",
                             onPressed: () {
                               vaildation();
-                            },
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.grey,
-                                foregroundColor: Colors.white),
-                            child: Text(
-                              "Register",
-                              style: TextStyle(fontSize: 17.3),
-                            ),
-                          ),
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Text(
-                              "I have already an Account Dude",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(width: 5),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                    builder: (ctx) => Login(),
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                "Login",
-                                style: TextStyle(
-                                    color: Colors.blue,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold),
+                            }),
+                        ChangeScreen(
+                          name: "Login",
+                          whichAccount: "I have already an Account",
+                          onTap: (() {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (ctx) => Login(),
                               ),
-                            ),
-                          ],
+                            );
+                          }),
                         ),
                       ],
                     ),
@@ -208,6 +182,7 @@ class _SignUpState extends State<SignUp> {
           ),
         ),
       ),
+
     );
   }
 }
