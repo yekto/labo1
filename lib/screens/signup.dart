@@ -73,23 +73,26 @@ class _SignUpState extends State<SignUp> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          MyTextFormField(name: "Username", validator: (value) {
-                            if (value == "") {
-                              return "Please fill this form";
-                            } else if (value!.length < 6) {
-                              return "Username is too Short";
-                            }
-                            return "";
-                          }),
-                          MyTextFormField(name: "Email", validator: (value) {
-                            if (value == "") {
-                              return "Please fill this form Dude";
-                            } else if (!regExp.hasMatch(value!)) {
-                              return "Email invalid Dude";
-                            }
-                            return "";
-                          }),
-
+                          MyTextFormField(
+                              name: "Username",
+                              validator: (value) {
+                                if (value == "") {
+                                  return "Please fill this form";
+                                } else if (value!.length < 6) {
+                                  return "Username is too Short";
+                                }
+                                return "";
+                              }),
+                          MyTextFormField(
+                              name: "Email",
+                              validator: (value) {
+                                if (value == "") {
+                                  return "Please fill this form Dude";
+                                } else if (!regExp.hasMatch(value!)) {
+                                  return "Email invalid Dude";
+                                }
+                                return "";
+                              }),
                           TextFormField(
                             obscureText: obserText,
                             validator: (value) {
@@ -117,39 +120,29 @@ class _SignUpState extends State<SignUp> {
                                   obserText == true
                                       ? Icons.visibility
                                       : Icons.visibility_off,
-                                  color: Colors.black,
+                                  color: Colors.grey,
                                 ),
                               ),
                               hintStyle: TextStyle(color: Colors.white),
                               border: OutlineInputBorder(),
                             ),
                           ),
-                          TextFormField(
-                            keyboardType: TextInputType.number,
-                            validator: (value) {
-                              if (value == "") {
-                                return "Please fill phone number";
-                              } else if (value!.length < 11) {
-                                return "Make Sure Your Phone number";
-                              }
-                              return "";
-                            },
-                            decoration: InputDecoration(
-                              // icon: Icon(Icons.phone),
-                              fillColor: Colors.white.withOpacity(0.8),
-                              filled: true,
-                              hintText: "Phone Number",
-                              hintStyle: TextStyle(color: Colors.white),
-                              border: OutlineInputBorder(),
-                            ),
-                          ),
-
+                          MyTextFormField(
+                              keyboardType: TextInputType.number,
+                              name: "Phone Number",
+                              validator: (value) {
+                                if (value == "") {
+                                  return "Please fill phone number";
+                                } else if (value!.length < 11) {
+                                  return "Make Sure Your Phone number";
+                                }
+                                return "";
+                              }),
                           MyButton(
                               name: "SignUp",
                               onPressed: () {
                                 vaildation();
                               }),
-
                           ChangeScreen(
                             name: "Login",
                             whichAccount: "I have already an Account",

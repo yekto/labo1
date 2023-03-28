@@ -6,17 +6,20 @@ RegExp regExp = new RegExp(p);
 class MyTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final String name;
+  final TextInputType? keyboardType;
 
-  const MyTextFormField(
+  MyTextFormField(
       {Key? key,
       required this.name,
-      required this.validator
+      required this.validator, this.keyboardType
       })
       : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: keyboardType,
       validator: validator,
       decoration: InputDecoration(
         fillColor: Colors.white.withOpacity(0.8),

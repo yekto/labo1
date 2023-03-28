@@ -6,7 +6,7 @@ import '../widgets/mytextformField.dart';
 import '../widgets/passwordtextformfield.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  Login({Key? key}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
@@ -26,6 +26,7 @@ void vaildation() {
     print("no");
   }
 }
+
 bool obserText = true;
 
 class _LoginState extends State<Login> {
@@ -61,7 +62,6 @@ class _LoginState extends State<Login> {
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
-
                       MyTextFormField(
                           name: "Email address",
                           validator: (value) {
@@ -72,38 +72,23 @@ class _LoginState extends State<Login> {
                             }
                             return "";
                           }),
-                      TextFormField(
-                        obscureText: obserText,
-                        validator: (value) {
-                          if (value == "") {
-                            return "Fill the password";
-                          } else if (value!.length < 8) {
-                            return "Password min 8 characters";
-                          }
-                          return "";
-                        },
-                        decoration: InputDecoration(
-                          fillColor: Colors.white.withOpacity(0.8),
-                          filled: true,
-                          border: OutlineInputBorder(),
-                          hintText: "Password",
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              FocusScope.of(context).unfocus();
-                              setState(() {
-                                obserText = !obserText;
-                              });
-                            },
-                            child: Icon(
-                              obserText == true
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          hintStyle: TextStyle(color: Colors.white),
-                        ),
-                      ),
+                      PasswordTextFormField(
+                          name: "Password",
+                          obserText: obserText,
+                          validator: (value) {
+                            if (value == "") {
+                              return "Fill the password";
+                            } else if (value!.length < 8) {
+                              return "Password min 8 characters";
+                            }
+                            return "";
+                          },
+                          onTap: () {
+                            FocusScope.of(context).unfocus();
+                            setState(() {
+                              obserText = !obserText;
+                            });
+                          }),
                       MyButton(
                           name: "Login",
                           onPressed: () {

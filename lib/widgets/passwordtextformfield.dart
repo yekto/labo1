@@ -6,8 +6,8 @@ class PasswordTextFormField extends StatelessWidget {
   final String name;
   final void Function()? onTap;
 
-  const PasswordTextFormField(
-      {Key? key,
+  PasswordTextFormField({
+      Key? key,
         required this.name,
         required this.obserText,
         required this.validator,
