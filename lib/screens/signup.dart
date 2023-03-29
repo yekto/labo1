@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:labo1/screens/login.dart';
 import 'package:labo1/widgets/changescreen.dart';
 import 'package:labo1/widgets/mytextformField.dart';
@@ -16,14 +18,24 @@ String p =
     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 RegExp regExp = new RegExp(p);
 bool obserText = true;
+String? emails;
+String email = emails ?? 'default';
+String? passwords;
+String password = passwords ?? 'default';
 
 class _SignUpState extends State<SignUp> {
-  void vaildation() {
+  void vaildation() async {
     final FormState? _form = _formKey.currentState;
     if (_form!.validate()) {
+      try {
+      UserCredential result = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+      print(result.user?.uid);} on PlatformException catch (e) {
+        print(e.message.toString());
+      }
       print("yes");
-    } else {
-      print("no");
+    }
+    else { print("no");
     }
   }
 
@@ -82,65 +94,45 @@ class _SignUpState extends State<SignUp> {
                                 } else if (value!.length < 6) {
                                   return "Username is too Short";
                                 }
-                                return "";
+                                return null;
                               }),
                           MyTextFormField(
                               name: "Email",
+                              onChanged: (value) {
+                                setState(() {
+                                  emails = value;
+                                });
+                              },
                               validator: (value) {
                                 if (value == "") {
                                   return "Please fill this form Dude";
                                 } else if (!regExp.hasMatch(value!)) {
                                   return "Email invalid Dude";
                                 }
-                                return "";
+                                return null;
                               }),
-                          // TextFormField(
-                          //   obscureText: obserText,
-                          //   validator: (value) {
-                          //     if (value == "") {
-                          //       return "Please Fill Password";
-                          //     } else if (value!.length < 8) {
-                          //       return "Min length is 8 character";
-                          //     }
-                          //     return "";
-                          //   },
-                          //   decoration: InputDecoration(
-                          //     fillColor: Colors.white.withOpacity(0.8),
-                          //     filled: true,
-                          //     hintText: "Password",
-                          //     suffixIcon: GestureDetector(
-                          //       onTap: () {
-                          //         setState(
-                          //           () {
-                          //             obserText = !obserText;
-                          //           },
-                          //         );
-                          //         FocusScope.of(context).unfocus();
-                          //       },
-                          //       child: Icon(
-                          //         obserText == true
-                          //             ? Icons.visibility
-                          //             : Icons.visibility_off,
-                          //         color: Colors.grey,
-                          //       ),
-                          //     ),
-                          //     hintStyle: TextStyle(color: Colors.white),
-                          //     border: OutlineInputBorder(),
-                          //   ),
-                          // ),
-                          PasswordTextFormField(name: "Password", obserText: obserText, validator: (value) {
-                            if (value == "") {
-                              return "Fill the password";
-                            } else if (value!.length < 8) {
-                              return "Password min 8 characters";
-                            }
-                            return "";
-                          }, onTap: () {
-                            FocusScope.of(context).unfocus();
-                            setState(() {
-                              obserText = !obserText;
-                            });
-                          }),
+                          PasswordTextFormField(
+                              name: "Password",
+                              obserText: obserText,
+                              onChanged: (value) {
+                                setState(() {
+                                  passwords = value;
+                                });
+                              },
+                              validator: (value) {
+                                if (value == "") {
+                                  return "Fill the password";
+                                } else if (value!.length < 8) {
+                                  return "Password min 8 characters";
+                                }
+                                return null;
+                              },
+                              onTap: () {
+                                FocusScope.of(context).unfocus();
+                                setState(() {
+                                  obserText = !obserText;
+                                });
+                              }),
                           MyTextFormField(
                               keyboardType: TextInputType.number,
                               name: "Phone Number",
@@ -150,7 +142,7 @@ class _SignUpState extends State<SignUp> {
                                 } else if (value!.length < 11) {
                                   return "Make Sure Your Phone number";
                                 }
-                                return "";
+                                return null;
                               }),
                           MyButton(
                               name: "SignUp",

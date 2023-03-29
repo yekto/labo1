@@ -5,19 +5,23 @@ class PasswordTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final String name;
   final void Function()? onTap;
+  final void Function(String)? onChanged;
 
-  PasswordTextFormField({
-      Key? key,
-        required this.name,
-        required this.obserText,
-        required this.validator,
-        required this.onTap})
+  PasswordTextFormField(
+      {Key? key,
+      required this.name,
+      required this.obserText,
+      required this.validator,
+      this.onChanged,
+      this.onTap})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: obserText,
       validator: validator,
+      onChanged: onChanged,
       decoration: InputDecoration(
         fillColor: Colors.white.withOpacity(0.8),
         filled: true,
@@ -26,9 +30,7 @@ class PasswordTextFormField extends StatelessWidget {
         suffixIcon: GestureDetector(
           onTap: onTap,
           child: Icon(
-            obserText == true
-                ? Icons.visibility
-                : Icons.visibility_off,
+            obserText == true ? Icons.visibility : Icons.visibility_off,
             color: Colors.grey,
           ),
         ),

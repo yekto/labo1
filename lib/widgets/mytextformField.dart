@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+
 String p =
     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 RegExp regExp = new RegExp(p);
 
 class MyTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
   final String name;
   final TextInputType? keyboardType;
 
   MyTextFormField(
       {Key? key,
       required this.name,
-      required this.validator, this.keyboardType
-      })
+      required this.validator,
+      this.keyboardType,
+      this.onChanged})
       : super(key: key);
 
   @override
@@ -20,6 +23,7 @@ class MyTextFormField extends StatelessWidget {
     return TextFormField(
       keyboardType: keyboardType,
       validator: validator,
+      onChanged: onChanged,
       decoration: InputDecoration(
         fillColor: Colors.white.withOpacity(0.8),
         filled: true,
