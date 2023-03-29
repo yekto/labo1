@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:labo1/screens/login.dart';
 import 'package:labo1/widgets/changescreen.dart';
 import 'package:labo1/widgets/mytextformField.dart';
+import 'package:labo1/widgets/passwordtextformfield.dart';
 import '../widgets/mybutton.dart';
 
 class SignUp extends StatefulWidget {
@@ -48,7 +49,7 @@ class _SignUpState extends State<SignUp> {
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: 50,
+                      height: 90,
                       width: double.infinity,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -93,40 +94,53 @@ class _SignUpState extends State<SignUp> {
                                 }
                                 return "";
                               }),
-                          TextFormField(
-                            obscureText: obserText,
-                            validator: (value) {
-                              if (value == "") {
-                                return "Please Fill Password";
-                              } else if (value!.length < 8) {
-                                return "Min length is 8 character";
-                              }
-                              return "";
-                            },
-                            decoration: InputDecoration(
-                              fillColor: Colors.white.withOpacity(0.8),
-                              filled: true,
-                              hintText: "Password",
-                              suffixIcon: GestureDetector(
-                                onTap: () {
-                                  setState(
-                                    () {
-                                      obserText = !obserText;
-                                    },
-                                  );
-                                  FocusScope.of(context).unfocus();
-                                },
-                                child: Icon(
-                                  obserText == true
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              hintStyle: TextStyle(color: Colors.white),
-                              border: OutlineInputBorder(),
-                            ),
-                          ),
+                          // TextFormField(
+                          //   obscureText: obserText,
+                          //   validator: (value) {
+                          //     if (value == "") {
+                          //       return "Please Fill Password";
+                          //     } else if (value!.length < 8) {
+                          //       return "Min length is 8 character";
+                          //     }
+                          //     return "";
+                          //   },
+                          //   decoration: InputDecoration(
+                          //     fillColor: Colors.white.withOpacity(0.8),
+                          //     filled: true,
+                          //     hintText: "Password",
+                          //     suffixIcon: GestureDetector(
+                          //       onTap: () {
+                          //         setState(
+                          //           () {
+                          //             obserText = !obserText;
+                          //           },
+                          //         );
+                          //         FocusScope.of(context).unfocus();
+                          //       },
+                          //       child: Icon(
+                          //         obserText == true
+                          //             ? Icons.visibility
+                          //             : Icons.visibility_off,
+                          //         color: Colors.grey,
+                          //       ),
+                          //     ),
+                          //     hintStyle: TextStyle(color: Colors.white),
+                          //     border: OutlineInputBorder(),
+                          //   ),
+                          // ),
+                          PasswordTextFormField(name: "Password", obserText: obserText, validator: (value) {
+                            if (value == "") {
+                              return "Fill the password";
+                            } else if (value!.length < 8) {
+                              return "Password min 8 characters";
+                            }
+                            return "";
+                          }, onTap: () {
+                            FocusScope.of(context).unfocus();
+                            setState(() {
+                              obserText = !obserText;
+                            });
+                          }),
                           MyTextFormField(
                               keyboardType: TextInputType.number,
                               name: "Phone Number",
