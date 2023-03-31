@@ -6,6 +6,7 @@ import 'package:labo1/widgets/changescreen.dart';
 import 'package:labo1/widgets/mytextformField.dart';
 import 'package:labo1/widgets/passwordtextformfield.dart';
 import '../widgets/mybutton.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -13,6 +14,7 @@ class SignUp extends StatefulWidget {
 }
 
 final _formKey = GlobalKey<FormState>();
+final _scaffoldKey = GlobalKey<ScaffoldState>();
 
 String p =
     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -28,14 +30,26 @@ class _SignUpState extends State<SignUp> {
     final FormState? _form = _formKey.currentState;
     if (_form!.validate()) {
       try {
-      UserCredential result = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
-      print(result.user?.uid);} on PlatformException catch (e) {
-        print(e.message.toString());
+        UserCredential result = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(email: email, password: password);
+        print(result.user?.uid);
+        _scaffoldKey.currentState?.showBottomSheet((context) => Container( color: Colors.green,
+            child: Text(
+              "Registration SUCCEEDED, go to Login Now!! ",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 15,color: Colors.white, fontWeight: FontWeight.w700),
+            )));
+      } catch (e) {
+        print(e.toString());
+        _scaffoldKey.currentState?.showBottomSheet((context) => Container( color: Colors.red,
+                child: Text(
+              "Email " + email + " is already to used!!! ",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 15,color: Colors.white, fontWeight: FontWeight.w700),
+            )));
       }
-      print("yes");
-    }
-    else { print("no");
+    } else {
+      print("no");
     }
   }
 
@@ -43,6 +57,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       // resizeToAvoidBottomInset: false,
+      key: _scaffoldKey,
       body: Container(
         alignment: Alignment.center,
         padding: EdgeInsets.all(9),
@@ -93,6 +108,8 @@ class _SignUpState extends State<SignUp> {
                                   return "Please fill this form";
                                 } else if (value!.length < 6) {
                                   return "Username is too Short";
+                                } else if (value.contains(" ")) {
+                                  return "Contains SPACES";
                                 }
                                 return null;
                               }),
@@ -107,7 +124,7 @@ class _SignUpState extends State<SignUp> {
                                 if (value == "") {
                                   return "Please fill this form Dude";
                                 } else if (!regExp.hasMatch(value!)) {
-                                  return "Email invalid Dude";
+                                  return "Invalid email";
                                 }
                                 return null;
                               }),
@@ -141,6 +158,8 @@ class _SignUpState extends State<SignUp> {
                                   return "Please fill phone number";
                                 } else if (value!.length < 11) {
                                   return "Make Sure Your Phone number";
+                                } else if (value.contains(" ")) {
+                                  return "Contains SPACES";
                                 }
                                 return null;
                               }),

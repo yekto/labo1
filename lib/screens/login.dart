@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:labo1/screens/signup.dart';
 import 'package:labo1/widgets/changescreen.dart';
 import '../widgets/mybutton.dart';
@@ -18,9 +20,21 @@ String p =
     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 RegExp regExp = new RegExp(p);
 
-void vaildation() {
+void vaildation() async {
   final FormState? _form = _formKey.currentState;
   if (_form!.validate()) {
+    try {
+      UserCredential result = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      print(result.user?.uid);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
+    }
+    ;
     print("yes");
   } else {
     print("no");
@@ -71,7 +85,6 @@ class _LoginState extends State<Login> {
                             } else if (!regExp.hasMatch(value!)) {
                               return "Email invalid Dude";
                             }
-                            return "";
                           }),
                       PasswordTextFormField(
                           name: "Password",
@@ -82,7 +95,6 @@ class _LoginState extends State<Login> {
                             } else if (value!.length < 8) {
                               return "Password min 8 characters";
                             }
-                            return "";
                           },
                           onTap: () {
                             FocusScope.of(context).unfocus();
